@@ -11,3 +11,7 @@ To run trails collecting data from the [MindWave mobile](http://store.neurosky.c
 - `npm start` runs the project. 
 
 If you have any Electron usage related questions just message me. 
+
+###Working with the Code
+- If you use spaces instead of tabs I will end you. 
+- End your statements with semicolins. 
