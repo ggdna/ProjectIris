@@ -6,7 +6,7 @@ var connectedDiv = $("#connectedDiv");
 var disconnectedDiv = $("#disconnectedDiv");
 
 $(".submit-btn").click(function () {
-    ipc.send("upload-data");
+    ipc.send("nav-from-start");
 });
 
 

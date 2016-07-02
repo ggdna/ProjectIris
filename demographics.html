@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>MindWave Data Collection</title>
+        <script>window.$ = window.jQuery = require('./jquery.min.js');</script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div style="padding-left: 20px; padding-top: 20px;">
+            <form id="mainForm" role="form">
+                <div class="form-group">
+                    <label for="ageInput">Age</label>
+                    <input type="text" class="form-content" id="ageInput" />
+                </div>
+                <div class="form-group">
+                    <label for="genderInput">Gender</label>
+                    <input type="text" class="form-content" id="genderInput" />
+                </div>
+                <div class="form-group">
+                    <label for="heightInput">Height</label>
+                    <input type="text" class="form-content" id="heightInput" />
+                </div>
+                <div class="form-group">
+                    <label for="weightInput">Weight</label>
+                    <input type="text" class="form-content" id="weightInput" />
+                </div>
+                <div class="form-group">
+                    <label for="ethnicityInput">Ethnicity</label>
+                    <input type="text" class="form-content" id="ethnicityInput" />
+                </div>
+                <div class="form-group">
+                    <label for="diseaseInput">Disease</label>
+                    <input type="text" class="form-content" id="diseaseInput" />
+                </div>
+                <div class="form-group">
+                    <label for="timeOfDiseaseInput">Time of disease</label>
+                    <input type="text" class="form-content" id="timeOfDiseaseInput" />
+                </div>
+                <div class="form-group">
+                    <label for="typeOfDrugsInput">Types of Drugs</label>
+                    <input type="text" class="form-content" id="typeOfDrugsInput" />
+                </div>
+                
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </body>
+
+    <script>
+        // You can also require other files to run in this process
+        require('./demographics.js')
+    </script>
+    <link rel="stylesheet" href="default.css" type="text/css" />
+</html>

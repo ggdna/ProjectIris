@@ -90,3 +90,10 @@ ipc.on("upload-data", function() {
     console.log("For the real deal this is where data would be uploaded to the server."); 
 });
 
+ipc.on("nav-from-start", function() {
+    mainWindow.loadURL(`file://${__dirname}/demographics.html`)
+});
+
+ipc.on("nav-from-demographics", function() {
+    mainWindow.loadURL(`file://${__dirname}/image_stimulate.html`);
+});
