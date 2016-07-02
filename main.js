@@ -8,6 +8,8 @@ let mainWindow;
 // The connection state.
 var connected = false;
 
+var collectData = false;
+
 var ipc = require("electron").ipcMain;
 
 //////////////////////////
@@ -43,6 +45,11 @@ function onDataRecieved(data) {
     if (prevConnected !== connected) {
         // The connection state has changed send an event to the renderer.
         ipc.send("connection_state_changed", connected);
+    }
+    
+    if (connected && collectData) {
+        // Send the data to the SQL database.
+        
     }
 }
 
@@ -95,5 +102,17 @@ ipc.on("nav-from-start", function() {
 });
 
 ipc.on("nav-from-demographics", function() {
-    mainWindow.loadURL(`file://${__dirname}/image_stimulate.html`);
+    mainWindow.loadURL(`file://${__dirname}/image_simulate.html`);
+});
+
+ipc.on("set-collect-data", function (shouldCollect) {
+    collectData = shouldCollect;
+});
+
+ipc.on("nav-from-image-simulate", function () {
+    mainWindow.loadURL(`file://${__dirname}/finished.html`);
+});
+
+ipc.on("nav-from-finished", function () {
+    mainWindow.loadURL(`file://${__dirname}/index.html`);
 });
