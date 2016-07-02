@@ -1,0 +1,30 @@
+html {
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.half-row {
+    height: 50%;
+    text-align: center;
+}
+
+.half-row p {
+    vertical-align: middle;
+    display: inline-block;    
+    margin-top: 15%;
+    font-size: 2em;
+}
+
+.submit-btn {
+    
+}
+
+.full-container {
+    height: 100%;
+}

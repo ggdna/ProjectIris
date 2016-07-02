@@ -5,6 +5,10 @@ const BrowserWindow = electron.BrowserWindow;
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
+// The connection state.
+var connected = false;
+
+var ipc = require("electron").ipcMain;
 
 //////////////////////////
 // Function definitions.
@@ -19,7 +23,7 @@ function createWindow() {
     mainWindow.loadURL(`file://${__dirname}/index.html`);
 
     // If you want you can open the chrome inspection window as well.
-    //mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools()
 
     mainWindow.on('closed', function() {
         mainWindow = null;
@@ -28,6 +32,18 @@ function createWindow() {
 
 function onDataRecieved(data) {
     // The data is in JSON format.
+    
+    var prevConnected = connected;
+    connected = data.poorSignalLevel != -1;
+    if (!connected) {
+        // Try connecting again.
+        client.connect();
+    }
+    
+    if (prevConnected !== connected) {
+        // The connection state has changed send an event to the renderer.
+        ipc.send("connection_state_changed", connected);
+    }
 }
 
 
@@ -49,7 +65,7 @@ app.on('activate', function() {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null) {
-    createWindow();
+        createWindow();
     }
 });
 
@@ -61,7 +77,6 @@ app.on('activate', function() {
 //////////////////////////////////////////////////////////////
 
 // Require all of the necessary modules.
-var ipc = require("electron").ipcMain;
 var mindWave = require("node-thinkgear-sockets");
 
 var client = mindWave.createClient({
@@ -72,6 +87,6 @@ client.on("data", onDataRecieved);
 client.connect();
 
 ipc.on("upload-data", function() {
-   console.log("For the real deal this is where data would be uploaded to the server."); 
+    console.log("For the real deal this is where data would be uploaded to the server."); 
 });
 

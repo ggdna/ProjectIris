@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>MindWave Data Collection</title>
-  </head>
-  <body>
-    <input type="button" id="submitBtn" value="Submit" />
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <title>MindWave Data Collection</title>
+        <script>window.$ = window.jQuery = require('./jquery.min.js');</script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="disconnectedDiv" class="container full-container">
+            <div class="row half-row">
+                <div class="col-md-12">
+                    <p>Device is disconnected.</p>
+                </div>
+            </div>
+            <div class="row half-row">
+                <div class="col-md-12">
+                    <input type="button" class="btn btn-primary submit-btn" value="Start Anyways" />
+                </div>
+            </div>
+        </div>
+        <div id="connectedDiv" class="container full-container">
+            <div class="row half-row">
+                <div class="col-md-12">
+                    <p>Device is connected.</p>
+                </div>
+            </div>
+            <div class="row half-row">
+                <div class="col-md-12">
+                    <input type="button" class="btn btn-primary submit-btn" value="Start" />
+                </div>
+            </div>
+        </div>
+    </body>
 
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
+    <script>
+        // You can also require other files to run in this process
+        require('./renderer.js')
+    </script>
+    <link rel="stylesheet" href="default.css" type="text/css" />
 </html>
