@@ -13,7 +13,7 @@ $(".submit-btn").click(function () {
 //////////////////////////
 // All Methods.
 ////////////////////
-function onConnectionStateChanged(connectionState) {
+function onConnectionStateChanged(event, connectionState) {
     // Update the DOM.
     console.log(connectionState);
     if (connectionState) {
@@ -26,9 +26,6 @@ function onConnectionStateChanged(connectionState) {
     }
 }
 
-
-
-
 //////////////////////////////
 // Add all event listener's
 ////////////////////////////
@@ -39,6 +36,6 @@ ipc.on("connection_state_changed", onConnectionStateChanged);
 
 //////////////////////////
 // Initialization code.
-onConnectionStateChanged(true);
+onConnectionStateChanged(null, false);
 
 

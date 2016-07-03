@@ -12,6 +12,13 @@ var collectData = false;
 
 var ipc = require("electron").ipcMain;
 
+// Require all of the necessary modules.
+var mindWave = require("node-thinkgear-sockets");
+
+var client = mindWave.createClient({
+    enableRawOutput: true
+});
+
 //////////////////////////
 // Function definitions.
 /////////////////////////
@@ -30,24 +37,27 @@ function createWindow() {
     mainWindow.on('closed', function() {
         mainWindow = null;
     });
+    
+    mainWindow.webContents.on("did-finish-load", function() {
+        client.on("data", onDataRecieved);
+        client.connect();
+    });
 }
 
 function onDataRecieved(data) {
     // The data is in JSON format.
     
     var prevConnected = connected;
-    console.log(prevConnected);
     connected = data.poorSignalLevel != -1;
-    console.log(connected);
     if (!connected) {
         // Try connecting again.
         client.connect();
     }
     
+    
     if (prevConnected !== connected) {
         // The connection state has changed send an event to the renderer.
-        console.log("Firing");
-        ipc.send("connection_state_changed", connected);
+        mainWindow.webContents.send("connection_state_changed", connected);
     }
     
     if (connected && collectData) {
@@ -86,16 +96,6 @@ app.on('activate', function() {
 // Application specific initialization code should be put here.
 //////////////////////////////////////////////////////////////
 
-// Require all of the necessary modules.
-var mindWave = require("node-thinkgear-sockets");
-
-var client = mindWave.createClient({
-    enableRawOutput: true
-});
-
-client.on("data", onDataRecieved);
-client.connect();
-
 ipc.on("upload-data", function() {
     console.log("For the real deal this is where data would be uploaded to the server."); 
 });
@@ -108,7 +108,8 @@ ipc.on("nav-from-demographics", function() {
     mainWindow.loadURL(`file://${__dirname}/image_stimulate.html`);
 });
 
-ipc.on("set-collect-data", function (shouldCollect) {
+ipc.on("set-collect-data", function (event, shouldCollect) {
+    console.log("Should collect is now " + shouldCollect);
     collectData = shouldCollect;
 });
 
