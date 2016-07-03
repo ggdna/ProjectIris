@@ -49,7 +49,7 @@ function onDataRecieved(data) {
     
     if (connected && collectData) {
         // Send the data to the SQL database.
-        
+        console.log("Logging data...");
     }
 }
 
@@ -102,7 +102,7 @@ ipc.on("nav-from-start", function() {
 });
 
 ipc.on("nav-from-demographics", function() {
-    mainWindow.loadURL(`file://${__dirname}/image_simulate.html`);
+    mainWindow.loadURL(`file://${__dirname}/image_stimulate.html`);
 });
 
 ipc.on("set-collect-data", function (shouldCollect) {

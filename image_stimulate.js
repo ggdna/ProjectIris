@@ -19,7 +19,7 @@ function onTimeElapsed() {
     
     if (currentIndex >= msgs.length) {
         // The user has gone through all of the tests.
-        
+        ipc.send("nav-from-image-simulate");
     }
     
     changeToStandbyUI();
@@ -28,7 +28,7 @@ function onTimeElapsed() {
 function startTimer() {
     $("#timer").timer("remove");
     $("#timer").timer({
-        seconds: 3,
+        duration: "5s",
         callback: onTimeElapsed,
         format: "%m:%s"
     });
@@ -55,6 +55,8 @@ $(window).load(function () {
     
     changeToStandbyUI();
     $("#startBtn").click(function () {
+        $("#startBtn").val("Continue");
+        
         // Start the timer.
         startTimer();
         
