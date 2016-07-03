@@ -28,7 +28,7 @@ function onTimeElapsed() {
 function startTimer() {
     $("#timer").timer("remove");
     $("#timer").timer({
-        duration: "5s",
+        duration: "3m",
         callback: onTimeElapsed,
         format: "%m:%s"
     });

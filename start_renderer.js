@@ -15,9 +15,10 @@ $(".submit-btn").click(function () {
 ////////////////////
 function onConnectionStateChanged(connectionState) {
     // Update the DOM.
+    console.log(connectionState);
     if (connectionState) {
         connectedDiv.show();
-        disconnectedDiv.show();
+        disconnectedDiv.hide();
     }
     else {
         connectedDiv.hide();
@@ -38,6 +39,6 @@ ipc.on("connection_state_changed", onConnectionStateChanged);
 
 //////////////////////////
 // Initialization code.
-onConnectionStateChanged(false);
+onConnectionStateChanged(true);
 
 

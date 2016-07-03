@@ -36,7 +36,9 @@ function onDataRecieved(data) {
     // The data is in JSON format.
     
     var prevConnected = connected;
+    console.log(prevConnected);
     connected = data.poorSignalLevel != -1;
+    console.log(connected);
     if (!connected) {
         // Try connecting again.
         client.connect();
@@ -44,6 +46,7 @@ function onDataRecieved(data) {
     
     if (prevConnected !== connected) {
         // The connection state has changed send an event to the renderer.
+        console.log("Firing");
         ipc.send("connection_state_changed", connected);
     }
     
